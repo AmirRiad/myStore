@@ -1,0 +1,23 @@
+<div *ngIf="product" class="data-container">
+    <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+            <img class="product-image" src='{{ product.url}}'>
+        </div>
+        <div class="data-item">
+            <div class="product-item-data product-title" ><b>{{ product.name }}</b></div>
+            <div class="product-item-data" >$ {{ product.price }}</div>
+            <div class="product-item-data" >{{ product.description }}</div>
+
+            <form (ngSubmit)="onSubmit(product)">
+                <input  class="product-item-data" name="quantity" type="number" min="1" [(ngModel)]=product.quantity />
+
+                <input type="submit" value="Add to Cart" class="product-item-data btn btn-primary">
+            </form>
+            <div class="product-item-data">
+                <a routerLink="/">
+                    &larr;Return to product list
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

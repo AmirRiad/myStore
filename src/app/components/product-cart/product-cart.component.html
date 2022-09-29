@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center start" class="cart-container"
+     *ngIf="cartProducts.length; else noCartItems">
+    <div class="cart-item-details">
+        <div *ngFor="let cartProduct of cartProducts" class="cart-item">
+            <img class="" src='{{cartProduct.url}}'>
+            <div class="cart-panel">
+                <div class="product-item-detail">{{ cartProduct.name}}</div>
+                <div class="product-item-detail">$ {{ cartProduct.price}}</div>
+                
+                <input  class="product-item-detail" type="number" min="1" (input)="checkNumbers(cartProduct.id,$event)" [(ngModel)]=cartProduct.count />
+                <div class="product-item-detail">
+                    <button (click)="removeCart(cartProduct.id)"  class="product-item-detail btn btn-primary">Remove</button>
+                </div>
+            </div>
+        </div>
+        <div class="cart-item"><b>Total Price: ${{ totalamount }}</b></div>
+    </div>
+    <div class="form-margin">
+            <app-create-form (checkoutSuccess)="checkout($event)"></app-create-form>
+    </div>
+</div>
+<ng-template #noCartItems>
+    <div class="empty-message">
+        No Products added to the Cart!<a routerLink="/"> add product to cart</a>. 
+    </div>
+</ng-template>

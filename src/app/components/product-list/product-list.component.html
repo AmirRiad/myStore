@@ -1,0 +1,17 @@
+<div class="container">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayoutAlign="space-between center" *ngFor="let product of products">
+        <a routerLink="/product-data/{{ product.id }}">
+            <img class="product-image" src='{{ product.url }}'>
+        </a>
+        <div class="product-data"><b>{{ product.name }}</b></div>
+        <div class="product-data">$ {{ product.price}}</div>
+
+        <form  #form="ngForm" (ngSubmit)="onSubmit(product, $event)">
+            <div class="product-data">  <input  required class="product-item-data" name="quantity"  type="number" min="1" [(ngModel)]=product.quantity /> </div>
+
+            <input [disabled]="form.invalid" type="submit" value="Add to Cart" class="product-detail btn btn-primary">
+        </form>
+    </div>
+    </div>
+</div>
